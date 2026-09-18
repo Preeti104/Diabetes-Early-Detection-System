@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}GlucoCheck &mdash; Diabetes Early Detection{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <span class="eyebrow">Machine learning screening</span>
+      <h1>Catch the early signs of diabetes, before symptoms do.</h1>
+      <p class="hero__lede">
+        GlucoCheck analyses fourteen clinical, physiological and lifestyle
+        measurements with a trained machine learning model to flag patterns
+        associated with Type&nbsp;2 diabetes &mdash; in seconds, from any browser.
+      </p>
+      <div class="hero__actions">
+        <a href="{{ url_for('predict') }}" class="btn-primary">Start a screening</a>
+        <a href="{{ url_for('about') }}" class="btn-secondary">How it works</a>
+      </div>
+    </div>
+    <div class="hero__panel" aria-hidden="true">
+      <div class="reading-card">
+        <span class="reading-card__label">Model type</span>
+        <span class="reading-card__value">Gradient boosted trees</span>
+      </div>
+      <div class="reading-card">
+        <span class="reading-card__label">Screening time</span>
+        <span class="reading-card__value">&lt; 1 second</span>
+      </div>
+      <div class="reading-card">
+        <span class="reading-card__label">Data handling</span>
+        <span class="reading-card__value">Nothing stored</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <div class="features__grid">
+      <div class="feature-card">
+        <h3>Trained on real patterns</h3>
+        <p>The model learns from 20,000 patient records spanning glucose, blood pressure, BMI, family history and more.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Instant, clear results</h3>
+        <p>Enter a patient's details and get a plain-language result with a confidence score right away.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Privacy by default</h3>
+        <p>Every screening is stateless. No patient data is saved, logged, or shared after the page closes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="wrap">
+    <span class="eyebrow">The team</span>
+    <h2>Built by</h2>
+    <div class="team-table">
+      <div class="team-table__row team-table__row--head">
+        <span>Group member</span>
+        <span>Student ID</span>
+      </div>
+      {% for member in team_members %}
+      <div class="team-table__row">
+        <span>{{ member.name }}</span>
+        <span>{{ member.id if member.id else "&mdash;"|safe }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap cta-band__inner">
+    <h2>Ready to run a screening?</h2>
+    <a href="{{ url_for('predict') }}" class="btn-primary">Start a screening</a>
+  </div>
+</section>
+
+{% endblock %}

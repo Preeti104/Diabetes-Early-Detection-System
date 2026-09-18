@@ -1,0 +1,19 @@
+[
+  "Age",
+  "Glucose",
+  "Blood Pressure",
+  "Skin Thickness",
+  "Insulin",
+  "BMI",
+  "Cholesterol",
+  "Diabetes Pedigree Function",
+  "Gender_Male",
+  "Physical Activity_Low",
+  "Physical Activity_Moderate",
+  "Smoking Status_Former",
+  "Smoking Status_Never",
+  "Alcohol Intake_Occasional",
+  "Alcohol Intake_Regular",
+  "Family History_Yes",
+  "Hypertension_Yes"
+]

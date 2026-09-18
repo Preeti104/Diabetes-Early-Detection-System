@@ -1,0 +1,29 @@
+{
+  "Gender": [
+    "Female",
+    "Male"
+  ],
+  "Physical Activity": [
+    "High",
+    "Low",
+    "Moderate"
+  ],
+  "Smoking Status": [
+    "Current",
+    "Former",
+    "Never"
+  ],
+  "Alcohol Intake": [
+    "None",
+    "Occasional",
+    "Regular"
+  ],
+  "Family History": [
+    "No",
+    "Yes"
+  ],
+  "Hypertension": [
+    "No",
+    "Yes"
+  ]
+}

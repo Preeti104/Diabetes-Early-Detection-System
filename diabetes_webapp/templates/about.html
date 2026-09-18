@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}About &mdash; GlucoCheck{% endblock %}
+
+{% block content %}
+
+<section class="page-intro">
+  <div class="wrap">
+    <span class="eyebrow">About</span>
+    <h1>How GlucoCheck works</h1>
+    <p class="page-intro__lede">
+      A closer look at the model, the data behind it, and what a result does
+      and doesn't tell you.
+    </p>
+  </div>
+</section>
+
+<section class="about-content">
+  <div class="wrap about-grid">
+
+    <article class="about-block">
+      <h2>The model</h2>
+      <p>
+        GlucoCheck is powered by a gradient-boosted decision tree model trained
+        to recognise patterns associated with Type&nbsp;2 diabetes across
+        clinical, physiological and lifestyle measurements. Before selecting
+        this model, several candidate algorithms were trained and compared on
+        the same data, and the strongest performer on held-out patient records
+        was chosen for the live tool.
+      </p>
+    </article>
+
+    <article class="about-block">
+      <h2>The data</h2>
+      <p>
+        The model was trained on a dataset of 20,000 patient records covering
+        fourteen features: demographic details (gender, age), clinical
+        measurements (glucose, blood pressure, skin thickness, insulin, BMI,
+        cholesterol, diabetes pedigree function), and lifestyle and history
+        factors (physical activity, smoking status, alcohol intake, family
+        history, hypertension).
+      </p>
+    </article>
+
+    <article class="about-block">
+      <h2>How a screening works</h2>
+      <p>
+        When you submit the form on the Prediction page, your inputs are
+        validated, transformed into the same numerical format the model was
+        trained on, and passed through the model in real time. The result is
+        a probability &mdash; how closely the entered profile matches patterns
+        seen in diabetic patients in the training data &mdash; shown alongside
+        a plain-language label.
+      </p>
+    </article>
+
+    <article class="about-block about-block--highlight">
+      <h2>What a result is &mdash; and isn't</h2>
+      <p>
+        A GlucoCheck result is a statistical screening signal, not a medical
+        diagnosis. It's designed to support &mdash; not replace &mdash; a
+        conversation with a qualified clinician and standard diagnostic
+        testing. Results should always be interpreted alongside professional
+        medical judgement.
+      </p>
+    </article>
+
+    <article class="about-block">
+      <h2>Privacy</h2>
+      <p>
+        Screenings are stateless: patient details you enter are used only to
+        generate the result on screen and are not stored, logged, or shared
+        afterwards.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap cta-band__inner">
+    <h2>Try a screening for yourself</h2>
+    <a href="{{ url_for('predict') }}" class="btn-primary">Start a screening</a>
+  </div>
+</section>
+
+{% endblock %}

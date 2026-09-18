@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Run a screening &mdash; GlucoCheck{% endblock %}
+
+{% block content %}
+
+<section class="page-intro">
+  <div class="wrap">
+    <span class="eyebrow">Prediction</span>
+    <h1>Patient screening</h1>
+    <p class="page-intro__lede">
+      Enter the patient's details below. Results are generated instantly and are not stored.
+    </p>
+  </div>
+</section>
+
+<div class="wrap main-grid">
+
+  <form class="intake" method="post" novalidate>
+
+    {% if errors %}
+      <div class="banner banner--error" role="alert">
+        <p class="banner__title">Check the following before running the screening:</p>
+        <ul>
+          {% for err in errors %}<li>{{ err }}</li>{% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% for group in field_groups %}
+      <fieldset class="intake__group">
+        <legend>{{ group.title }}</legend>
+        <div class="field-grid">
+          {% for col in group.fields %}
+            <div class="field">
+              <label for="{{ col }}">{{ field_labels[col] }}</label>
+              {% if col in categorical_cols %}
+                <select id="{{ col }}" name="{{ col }}" required>
+                  <option value="" disabled {% if not values.get(col) %}selected{% endif %}>Select&hellip;</option>
+                  {% for opt in categorical_options[col] %}
+                    <option value="{{ opt }}" {% if values.get(col) == opt %}selected{% endif %}>{{ opt }}</option>
+                  {% endfor %}
+                </select>
+              {% else %}
+                <input
+                  type="number"
+                  step="any"
+                  id="{{ col }}"
+                  name="{{ col }}"
+                  min="{{ numeric_ranges[col].min }}"
+                  max="{{ numeric_ranges[col].max }}"
+                  placeholder="{{ numeric_ranges[col].min|round(0, 'floor')|int }}&ndash;{{ numeric_ranges[col].max|round(0, 'floor')|int }}"
+                  value="{{ values.get(col, '') }}"
+                  required
+                >
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </fieldset>
+    {% endfor %}
+
+    <button type="submit" class="btn-run">Run screening</button>
+  </form>
+
+  <aside class="result-rail">
+    {% if result %}
+      <div class="report {{ 'report--positive' if result.is_positive else 'report--negative' }}">
+        <span class="report__eyebrow">Result</span>
+        <span class="report__figure">{{ result.probability_pct }}<span class="report__unit">%</span></span>
+        <span class="report__label">{{ result.label }}</span>
+        <p class="report__note">
+          Modelled likelihood of diabetic indicators based on the patient details provided.
+        </p>
+        <p class="report__disclaimer">
+          Not a medical diagnosis &mdash; refer to a physician for clinical confirmation.
+        </p>
+      </div>
+    {% else %}
+      <div class="report report--empty">
+        <span class="report__eyebrow">Result</span>
+        <p class="report__placeholder">
+          Complete the form and run the screening to see a result here.
+        </p>
+      </div>
+    {% endif %}
+  </aside>
+
+</div>
+
+{% endblock %}

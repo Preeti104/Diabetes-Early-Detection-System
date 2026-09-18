@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Diabetes Early Detection System{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a href="{{ url_for('home') }}" class="site-header__mark">
+      <span class="mark-dot" aria-hidden="true"></span>
+      GlucoCheck
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="{{ url_for('home') }}" class="{{ 'is-active' if request.endpoint == 'home' }}">Home</a>
+      <a href="{{ url_for('predict') }}" class="{{ 'is-active' if request.endpoint == 'predict' }}">Prediction</a>
+      <a href="{{ url_for('about') }}" class="{{ 'is-active' if request.endpoint == 'about' }}">About</a>
+    </nav>
+    <a href="{{ url_for('predict') }}" class="btn-nav-cta">Start screening</a>
+  </div>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__brand">
+      <span class="mark-dot" aria-hidden="true"></span>
+      <span>GlucoCheck</span>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('predict') }}">Prediction</a>
+      <a href="{{ url_for('about') }}">About</a>
+    </nav>
+    <p class="site-footer__note">
+      For screening support only &mdash; always confirm results with a qualified clinician.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
